@@ -14,12 +14,35 @@ header{
     font-size: 40px;
     padding: 15px 50px;
     /* background-color: #6499E9; */
-    background-color: rgb(245, 78, 111);
+    background-color: rgb(60, 60, 60);
     color: white;
     box-shadow: 0px 0px 3px black;
 }
 
-div{
+header > span{
+    position: absolute;
+    right: 40px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-radius: 50px;
+}
+
+header > span span{
+    font-size: 20px;
+    background-color: #ffbd03;
+    border-radius: 50px;
+    padding: 11px;
+}
+
+header > span:hover{
+    transform: scale(1.1);
+}
+
+#question-container{
     padding: 10px;
     margin: 20px;
     box-shadow: 0px 0px 2px black;
@@ -69,19 +92,17 @@ button{
 
 button:hover{
     cursor: pointer;
+    box-shadow: 0px 0px 2px black;
 }
 
 #check-button{
-    background-color: #03C988;
+    background-color:  #4681f4;
 }
 
 #next-button{
-    background-color: #EB455F;
+    background-color: #4681f4;
 }
 
-button:hover{
-    box-shadow: 0px 0px 4px black;
-}
 
 /* Css for right answer */
 #right-answer{
@@ -90,12 +111,12 @@ button:hover{
 }
 
 #wrong-answer{
-    background-color: rgba(255, 0, 0,0.65);
+    background-color: rgba(245, 84, 73,1);;
     color: white;
 }
 
 #select-answer{
-    background-color: #ebf5ff;
+    background-color: rgb(235, 245, 255);
     border: 1.5px solid blue;
 }
 
@@ -103,4 +124,30 @@ button:disabled{
   box-shadow: none;
   cursor: not-allowed;
   visibility: hidden;
+}
+
+.result{
+    width: 300px;
+    height: 50px;
+    position: fixed;
+    top: 120px;
+    right: 50px;
+    background-color: white;
+    box-shadow: 0px 0px 2px black;
+    font-size: 20px;
+    text-align: center;
+    padding: 14px;
+    font-weight: bold;
+}
+
+.result-wrong{
+    border-left: 5px solid red;
+    color: red;
+    content: "Wrong Answer";
+}
+
+.result-right{
+    border-left: 5px solid rgb(3, 174, 3);
+    color: green;
+    content: "Right Answer";
 }

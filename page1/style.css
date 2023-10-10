@@ -46,6 +46,7 @@ p{
 }
 
 input, button{
+    width: 100%;
     font-size: 1em;
     padding: 10px;
     margin: 10px 0px;

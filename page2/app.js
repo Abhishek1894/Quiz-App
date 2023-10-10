@@ -43,9 +43,16 @@ class Question
     }
 }
 
+
+
 // array to store all 10 objects of class
 let questionList = [];
 let pointer = 0; // points to current question index
+
+let points = 0; // points scored in test
+
+const pointDisplay = document.getElementById("points");
+pointDisplay.innerText = `${points}`.padStart(2,'0');
 
 // function to suffle the array of options
 function shuffle(array) {
@@ -92,6 +99,12 @@ const fetchData = async () =>
                 questionList.push(question);
             }
 
+            // disabling loading message
+            const loading = document.getElementsByClassName("loading");
+            console.log(loading);
+            loading[0].style.display = "none";
+
+            // showing question
             showNextQuestion();
         }
         else
@@ -151,6 +164,18 @@ const showNextQuestion = () =>
 
         // diabling the next button
         nextButton.setAttribute("disabled","");
+
+        // enabling click event on option answers
+        for(let i = 0; i < options.length; i++)
+        {
+            options[i].style.pointerEvents = "auto";
+        }
+
+        // setting result
+        const result = document.getElementsByClassName("result")[0];
+        if(result.classList.contains("result-wrong"))result.classList.remove("result-wrong");
+        if(result.classList.contains("result-right"))result.classList.remove("result-right");
+        result.style.display = "none";
     }
 }
 
@@ -166,9 +191,17 @@ function selectAnswer(id)
     p[id].setAttribute("id","select-answer");
 }
 
+function incrementPoints()
+{
+    points += 2;
+    const pointDisplay = document.getElementById("points");
+    pointDisplay.innerText = `${points}`.padStart(2,'0');
+}
+
 function checkAnswer(index)
 {
     const p = document.getElementsByClassName("option");
+    const result = document.getElementsByClassName("result")[0];
 
     let selected = -1
 
@@ -193,11 +226,21 @@ function checkAnswer(index)
         {
             p[selected].removeAttribute("id");
             p[selected].setAttribute("id","right-answer");
+
+            incrementPoints();
+
+            result.classList.add("result-right");
+            result.innerText = "Right Answer";
+            result.style.display = "flex";
         }
         else
         {
             p[selected].removeAttribute("id");
             p[selected].setAttribute("id","wrong-answer");
+            
+            result.classList.add("result-wrong");
+            result.innerText = "Wrong Answer"
+            result.style.display = "flex";
         }
 
         // disabling the check button once it is clicked
@@ -207,6 +250,12 @@ function checkAnswer(index)
         // enabling the next button once check button is clicked
         const nextButton = document.getElementById("next-button");
         nextButton.removeAttribute("disabled");
+
+        // disabling click even on answer options
+        for(let i = 0; i < p.length; i++)
+        {
+            p[i].style.pointerEvents = "none";
+        }
     }
 }
 
@@ -217,6 +266,7 @@ nextButton.addEventListener("click",showNextQuestion);
 const checkButton = document.getElementById("check-button");
 checkButton.addEventListener("click",()=>{
     checkAnswer(pointer - 1);
-})
+});
+
 
 fetchData();

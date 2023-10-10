@@ -15,11 +15,15 @@
         <div>
             <p>Welcome</p>
             <p class="appName">Quiz App</p>
-            <input type="text" id="name" placeholder="Enter Your Name" required>
-            <a href="../page2/main.html">
-                <button>Start Quiz</button>
-            </a>
+            <form action="../page2/main.html">
+                <input type="text" id="person-name" placeholder="Enter Your Name" required>
+                <button id="start-quiz" onclick="return createPerson()">Start Quiz</button>
+            </form>
         </div>
     </div>
+
+    <script src="../page2/app.js">
+
+    </script>
 </body>
 </html>

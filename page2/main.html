@@ -11,8 +11,14 @@
 <body>
     <header>
         Quiz App
+        <span>
+            Points <span id="points">24</span>
+        </span>
     </header>
 
+    <div class="loading" style = "text-align: center; font-size: 25px; position: absolute; top: 50vh; left: 50vw;">
+        Loading...
+    </div>
     <div id="question-container" style="display: none;">
         <p class="question"></p>
             <p class="option" onclick="selectAnswer(0)"></p>
@@ -23,6 +29,13 @@
             <button id="check-button">Check Answer</button>
             <button id="next-button">Next Question</button>
         </span>
+
+        <div class="user">
+
+        </div>
+    </div>
+
+    <div class="result" style="display: none;">
     </div>
 
 
