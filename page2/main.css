@@ -151,3 +151,16 @@ button:disabled{
     color: green;
     content: "Right Answer";
 }
+
+.final-result{
+    background-color: #ffbd03;
+    font-size: 25px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: black;
+    border: 2px groove black;
+    box-shadow: 0px 0px 1px black;
+}
