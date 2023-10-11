@@ -48,6 +48,7 @@ class Question
 // array to store all 10 objects of class
 let questionList = [];
 let pointer = 0; // points to current question index
+let userAnswers = []; // stores the option selected by user
 
 let points = 0; // points scored in test
 
@@ -123,17 +124,21 @@ const fetchData = async () =>
 
 const showNextQuestion = () => 
 {
+    let flag = false;
     if(pointer < questionList.length)
     {
 
         const nextButton = document.getElementById("next-button");
+
+        let obj = questionList[pointer];
+
         //nextButton.setAttribute("disabled",true);
         if(pointer == (questionList.length - 1))
         {
             nextButton.innerText = "Submit";
+            flag = true;
         }
 
-        let obj = questionList[pointer];
         const question = document.querySelector(".question");
         const options = document.getElementsByClassName("option");
 
@@ -156,8 +161,6 @@ const showNextQuestion = () =>
             }
         }
 
-        pointer++;
-
         // enabling the check button
         const checkButton = document.getElementById("check-button");
         checkButton.removeAttribute("disabled");
@@ -177,6 +180,19 @@ const showNextQuestion = () =>
         if(result.classList.contains("result-right"))result.classList.remove("result-right");
         result.style.display = "none";
     }
+
+    if(pointer === questionList.length)
+    {
+        // saving data in local storage to use it in another page
+        let data = {list : questionList, userAns:userAnswers, userPoints: points};
+        // Put the object into storage
+        localStorage.setItem('data', JSON.stringify(data));
+
+        // jumping to result page
+        window.location.replace("../page3/result.html");
+    }
+
+    pointer++;
 }
 
 function selectAnswer(id)
@@ -220,6 +236,8 @@ function checkAnswer(index)
         alert("Please select answer !");
     else
     {
+        userAnswers.push(selected); // stores the option selected by user for particular question
+
         let selectedText = p[selected].innerText;
 
         if(selectedText === questionList[index].answer)
