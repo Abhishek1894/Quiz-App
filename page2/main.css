@@ -144,6 +144,18 @@ button:disabled{
     font-weight: bold;
 }
 
+.summary-result{
+    width: 300px;
+    height: 50px;
+    margin: 10px 10px 10px 20px;
+    background-color: white;
+    box-shadow: 0px 0px 2px black;
+    font-size: 20px;
+    text-align: center;
+    padding: 14px;
+    font-weight: bold;
+}
+
 .result-wrong{
     border-left: 5px solid red;
     color: red;

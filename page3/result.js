@@ -41,7 +41,6 @@ function showSummary()
         opt[3].classList.add("option");
 
         // filling question in question p tag
-        console.log(list[i].question)
         questionP.innerText = userResult.list[i]._question;
 
         // filling option p tag
@@ -50,11 +49,48 @@ function showSummary()
         opt[2].innerText = userResult.list[i]._opt3;
         opt[3].innerText = userResult.list[i]._opt4;
 
+
+        // checking for right and wrong answer
+        let selectedIndex = userResult.userAns[i];
+        console.log("question no:",i);
+        console.log("selected indec :",selectedIndex);
+        console.log("selected value :",opt[selectedIndex].innerText);
+        console.log("correct answer :",userResult.list[i]._answer);
+
+        const result = document.createElement("div");
+
+        if(opt[selectedIndex].innerText == userResult.list[i]._answer)
+        {
+            // if answer is right
+            result.classList.add("summary-result","result-right");
+            result.innerText = "Right Answer";
+            opt[selectedIndex].setAttribute("id","right-answer");
+        }
+        else
+        {
+            // if answer is wrong
+            result.classList.add("summary-result","result-wrong");
+            result.innerText = "Wrong Answer"
+            opt[selectedIndex].setAttribute("id","wrong-answer");
+
+            opt.forEach(option => {
+                if(option.innerText == userResult.list[i]._answer)
+                {
+                    option.style.backgroundColor = "#03C988";
+                    option.style.color = "white";
+                }
+            })
+
+        }
+
         // adding div to page
         page.append(div);
 
         // adding question p tag to div
         div.append(questionP);
+        
+        // adding result banner to div
+        div.append(result);
 
         // adding options to div
         div.append(opt[0]);
